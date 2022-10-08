@@ -1,0 +1,15 @@
+[features]
+seeds = false
+skip-lint = false
+[programs.devnet]
+ticket_system = "JDXSam2kCQc1eTcZxokCUqCkuBxPaMXzBf3iaVjVbcqb"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "devnet"
+wallet = "/home/mateo/.config/solana/id.json"
+
+[scripts]
+system = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
