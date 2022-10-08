@@ -20,7 +20,6 @@ pub mod ticket_system {
         let system_account: &mut Account<SystemAccount> = &mut ctx.accounts.system_account;
         system_account.authority = ctx.accounts.signer.key();
         system_account.bump_original = bump;
-  
         Ok(())
     }
 }
