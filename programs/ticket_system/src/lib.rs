@@ -6,7 +6,7 @@ use anchor_lang::{
 }; 
 use std::str::FromStr;
 
-declare_id!("JDXSam2kCQc1eTcZxokCUqCkuBxPaMXzBf3iaVjVbcqb");
+declare_id!("DvrXsDmz9cBLbLsCun9a37ojkCaxG1hxSAJsg36yttu7");
 
 #[program]
 pub mod ticket_system {
@@ -29,7 +29,7 @@ pub mod ticket_system {
     ) -> Result<()> {
         let pubkey: Pubkey = Pubkey::from_str("98EgyyxzsehNpNy8yTpcGfTxRmxxVJnu2RHwSvF5nn6i").unwrap();
         //require_keys_eq!(ctx.accounts.signer.key(), pubkey, ErrorCode::AuthorityError);
-        let (_event_account_pda, bump): (Pubkey, u8) = Pubkey::find_program_address(&[ctx.accounts.system_account.events.to_be_bytes().as_ref()], &pubkey);
+        let (_event_account_pda, bump): (Pubkey, u8) = Pubkey::find_program_address(&[ctx.accounts.seed.key().as_ref()], &pubkey);
         let system_account: &mut Account<SystemAccount> = &mut ctx.accounts.system_account;
         let event_account: &mut Account<EventAccount> = &mut ctx.accounts.event_account;
         event_account.authority = ctx.accounts.signer.key();
@@ -47,14 +47,18 @@ pub struct TicketSystem<'info> {
     pub signer: Signer<'info>,
     pub system_program: Program<'info, System>,
 }
+
 #[derive(Accounts)]
 pub struct Event<'info> {
     #[account(mut, seeds = [system_account.authority.key().as_ref()], bump = system_account.bump_original)]
     pub system_account: Account<'info, SystemAccount>,
-    #[account(init, seeds = [system_account.events.to_be_bytes().as_ref()], bump, payer = signer, space = 41)]
+    #[account(init, seeds = [seed.key().as_ref()], bump, payer = signer, space = 73)]
     pub event_account: Account<'info, EventAccount>,
     #[account(mut)]
     pub signer: Signer<'info>,
+    /// CHECK: This is not dangerous because we don't read or write from this account
+    #[account(mut)]
+    pub seed: AccountInfo<'info>,
     pub system_program: Program<'info, System>,
 }
 
@@ -69,6 +73,7 @@ pub struct SystemAccount {
 pub struct EventAccount {
     pub authority: Pubkey, 
     pub bump_original: u8,
+    pub dynamic_seed: Pubkey,
 }
 
 #[error_code]

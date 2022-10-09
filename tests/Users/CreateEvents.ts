@@ -10,9 +10,10 @@ describe("Registering an event", () => {
 
   it("Is initialized!", async () => {
     const SystemAccount = await program.account.systemAccount.fetch(System);
+    const seed = anchor.web3.Keypair.generate();
     const [EventAccount, _bump] = await PublicKey.findProgramAddress(
       [
-        new anchor.BN(SystemAccount.events).toArrayLike(Buffer, "be", 8),
+        seed.publicKey.toBuffer(),
       ],
       program.programId
     )
@@ -21,6 +22,7 @@ describe("Registering an event", () => {
       systemAccount: System,
       eventAccount: EventAccount,
       signer: provider.wallet.publicKey,
+      seed: seed.publicKey,
       systemProgram: anchor.web3.SystemProgram.programId
     })
     .rpc();

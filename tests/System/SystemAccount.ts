@@ -31,7 +31,7 @@ describe("Initialized system account", () => {
     console.log("----------------------------------------------")
     console.log("Bump:", Account.bumpOriginal.toString())
     console.log("----------------------------------------------")
-    console.log("0 to 3 km ticket price:", Account.events.toString())
+    console.log("Events:", Account.events.toString())
     console.log("----------------------------------------------")
   });
 });

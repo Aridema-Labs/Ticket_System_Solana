@@ -2,7 +2,7 @@
 seeds = false
 skip-lint = false
 [programs.devnet]
-ticket_system = "JDXSam2kCQc1eTcZxokCUqCkuBxPaMXzBf3iaVjVbcqb"
+ticket_system = "DvrXsDmz9cBLbLsCun9a37ojkCaxG1hxSAJsg36yttu7"
 
 [registry]
 url = "https://api.apr.dev"
