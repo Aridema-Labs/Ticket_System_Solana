@@ -4,5 +4,8 @@ anchor.setProvider(provider);
 export const wallet = provider.wallet as anchor.Wallet;
 
 export const System = new anchor.web3.PublicKey(
-    "2r8mPD65rzbjdXCxX1jgaZoKbQKJRHRWAzFQCgpcis3E"
+    "8dzqZaEE3QTatnXF72fJRbNHnyh7QqXyFTsbKnFXcYEX"
+);
+export const Event = new anchor.web3.PublicKey(
+    "FsUkKfCouLEd9KR2vRvNCBpFHnqRcYqJi37C8GeincrF"
 );

@@ -29,9 +29,11 @@ describe("Initialized system account", () => {
     console.log("----------------------------------------------")
     console.log("Authority:", Account.authority.toBase58())
     console.log("----------------------------------------------")
-    console.log("Bump:", Account.bumpOriginal.toString())
+    console.log("History events:", Account.historyEvents.toString())
     console.log("----------------------------------------------")
-    console.log("Events:", Account.events.toString())
+    console.log("Active events:", Account.activeEvents.toString())
+    console.log("----------------------------------------------")
+    console.log("Historical Tickets Sold:", Account.historyTicketsSold.toString())
     console.log("----------------------------------------------")
   });
 });
