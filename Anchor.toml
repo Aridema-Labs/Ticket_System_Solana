@@ -16,3 +16,4 @@ system = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/System/SystemAcc
 event = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/Users/CreateEvents.ts"
 check = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/Users/CheckEvent.ts"
 ticket = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/Users/BuyATicket.ts"
+checks = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/System/CheckSystem.ts"
